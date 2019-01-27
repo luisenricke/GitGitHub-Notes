@@ -1,17 +1,44 @@
 # RoadTo2019
+
 Este es mi repositorio en donde llevare todo mi avance del 2019
 
-1. What new technology/concept would be certainly profitable in my day to day job in the next 3-6 months?
+1. ¿Qué nuevas tecnologías/conceptos me gustaría saber en mi día a día en los siguientes 3-6 meses?
+   * Markdown
+   * Android development
+   * Kotlin
+   * Docker
+   * PHP
+   * Laravel
+
+2. ¿En que campo quiero **profundizar** mi conocimiento?
 
 
+3. ¿Que parte de la tecnología/concepto me **ejercitará** y me hará intentarlo?
 
-2. What field do I want to **deepen** my knowledge in?
+## Markdown
 
+   1. [ ] a
 
+## Android development
 
-3. What piece of technology/concept **excites** me and makes me want to try it?
+   1. [ ] a
 
+## Kotlin
 
+   1. [ ] a
+
+## Docker
+
+   1. [ ] a
+
+## PHP
+
+   1. [ ] a
+
+## Laravel
+
+   1. [ ] a
 
 ## Referencias
-- https://dev.to/bgord/how-do-i-identify-my-knowledge-gaps-and-learn-4mlc
+
+* [DEV Community 👨‍💻👩‍💻 | How to I identify my knowledge gaps and learn](https://dev.to/bgord/how-do-i-identify-my-knowledge-gaps-and-learn-4mlc)
