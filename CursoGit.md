@@ -84,6 +84,6 @@ Para poder pedir información de un comando en especifico, sería de la siguient
 git help <comando>
 ```
 
-[//]: <> (Imagenes)
+<!-- Referencias de imagenes -->
 
 [git-data]: /img/git-data.png
