@@ -1,9 +1,10 @@
 # RoadTo2019
 
-Este es mi repositorio en donde llevare todo mi avance del 2019
+Este es mi repositorio en donde llevare todo mi avance del 2019  
 
 1. ¿Qué nuevas tecnologías/conceptos me gustaría saber en mi día a día en los siguientes 3-6 meses?
    * Markdown
+   * Git
    * Android development
    * Kotlin
    * Docker
@@ -42,3 +43,4 @@ Este es mi repositorio en donde llevare todo mi avance del 2019
 ## Referencias
 
 * [DEV Community 👨‍💻👩‍💻 | How to I identify my knowledge gaps and learn](https://dev.to/bgord/how-do-i-identify-my-knowledge-gaps-and-learn-4mlc)
+
