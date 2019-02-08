@@ -1,28 +1,72 @@
 # Curso Git|GitHub
 
+## Introducción ¿Dondé nació todo esto?
+
+### Acerca del control de versiones
+
+### ¿Qué es demonios es Git?
+
+> Git fue creado pensando en la eficiencia y la confiabilidad del mantenimiento de versiones de aplicaciones cuando éstas tienen un gran número de archivos de código fuente, es decir Git nos proporciona las herramientas para desarrollar un trabajo en equipo de manera inteligente y rápida y por trabajo nos referimos a algún software o página que implique código el cual necesitemos hacerlo con un grupo de personas.  
+> -Andrés en [Codigo Facilito](https://codigofacilito.com/articulos/que-es-git).
+
+### Configuración
+
+#### Inicial
+
+Para usar git es necesario estar identificados con un usuario y correo para poder identificar de una manera rápida y sencilla quién esta haciendo los cambios en los repositorios.  
+
+```git
+git config --global user.name = <nombre>
+git config --global user.email = <correo>
+```
+
+Para poder conocer las configuraciones de nuestro git se puede desplegar en un archivo en donde se almacena las configuraciones hechas.
+
+```git
+git config --global -e
+```
+
+#### Conexión con SSH
+
+### Pedir ayuda a la linea de comandos
+
+Es muy fácil perdernos entre tanto que aprender y por ello git nos puede proporcionar una guía bastante útil cuando la necesitemos respecto a los comandos que hay, por ello es importante conocer las diferentes maneras de pedir ayuda.
+
+```git
+git help
+git help <comando>
+git <comando> --help
+```
+
+<!-- Sin redactar-->
+
 ## ***Introducción***
 
-### ¿Qué es git? 
-  > Git fue creado pensando en la eficiencia y la confiabilidad del mantenimiento de versiones de aplicaciones cuando éstas tienen un gran número de archivos de código fuente, es decir Git nos proporciona las herramientas para desarrollar un trabajo en equipo de manera inteligente y rápida y por trabajo nos referimos a algún software o página que implique código el cual necesitemos hacerlo con un grupo de personas.  
-  > -Andrés en [Codigo Facilito](https://codigofacilito.com/articulos/que-es-git).
 
 ### ¿Qué es un commit?
   >Sirve para almacenar los cambios de manera local donde se guarda el apuntador de los archivos preparados, unos metadatos con el autor y el mensaje explicativo de lo que sucedio en ese punto del tiempo  
 
 ![Breve ejemplo del proceso de un commit][gitcommit]
 
+ >Se debe de escribir en tiempo presente y sea lo mas descriptivo posible
+
 <!--![Explicación breve de como funciona un commit][git-data]--> 
   
+#### ¿Qué es el Stage?
+  > Es una especie de área de exhibición en git, donde se colocan los contenidos que se deben confirmar en el commit.
+
+#### ¿Qué es status?
+  >Muestra todas las rutas que tienen diferencias entre el archivo _index_ y la posición actual de _HEAD_, las rutas que tienen diferencias entre la rama que se esta trabajando y el archivo _index_ y las rutas de la rama en la que se esta trabjando que no están siendo seguidas por Git y que no estan siendo ignoradas por el archivo **.gitignore**.  [Documentación oficial de Git](https://git-scm.com/docs/git-status)  
+  >Esto quiere decir que se visualizará el estado de todos los archivos que contengan cambios que no hayan sigo archivados con un commit en el espacio de trabajo.
+
+  >Si esta en rojo quiere decir que es un nuevo archivo, si esta en amarillo quiere decir que se esta modificando y si esta en verde es el archivo que esta en el stage
+
 #### ¿Qué es el HEAD?
   >Es el apuntador que se encuentra siempre en el ultimo commit realizado
 
 #### ¿Qué es Index?
   >Es donde se coloca los archivos que desea que se confirmen en el repositorio  
   
-
-### ¿Qué es status?
-  >Muestra todas las rutas que tienen diferencias entre el archivo _index_ y la posición actual de _HEAD_, las rutas que tienen diferencias entre la rama que se esta trabajando y el archivo _index_ y las rutas de la rama en la que se esta trabjando que no están siendo seguidas por Git y que no estan siendo ignoradas por el archivo **.gitignore**.  [Documentación oficial de Git](https://git-scm.com/docs/git-status)  
-  >Esto quiere decir que se visualizará el estado de todos los archivos que contengan cambios que no hayan sigo archivados con un commit en el espacio de trabajo.
 
 ### ¿Qué es una branch?
  > Una rama de git es simplemente un apuntador móvil apuntado a uno de los diferentes commits. La rama por defecto es la master. En cada commit que realicemos, la rama irá avanzando automaticamente.
@@ -33,19 +77,14 @@
 
 ![Apuntador Head en la separación de la branch][git-branch-create]
 
+## ¿Qué es un log?
+> Muestra el historial de los commits
 
-## Configuración inicial del enterno
 
-Para usar git es necesario estar identificados con un usuario y correo para poder identificar de una manera rápida y sencilla quién esta haciendo los cambios en el repositorio.  
-```
-git config --global user.name = <nombre>
-git config --global user.email = <correo>
-```
+<!--Checar como personalizar los logs https://coderwall.com/p/euwpig/a-better-git-log-->
 
-Para poder conocer las configuraciones de nuestro git se puede desplegar en un archivo en donde se almacena las configuraciones hechas
-```
-git config --global -e
-```
+
+
 
 ## Configuración inicial del proyecto
 
@@ -57,6 +96,9 @@ git init
 ## Comandos necesarios de aprender
 
 Para poder agregar todos los cambios al escenario el siguiente comando lo hara
+```
+git add <archivo>
+```
 ```
 git add .
 ```
@@ -91,17 +133,6 @@ git checkout -- .
 - Para salir sin guardar cambios en los archivos es con ```:q```
 
 
-## ***Ayuda***  
-
-Con el siguiente comando podemos pedir a git que nos de más información en general  
-```
-git help
-```
-
-Para poder pedir información de un comando en especifico, sería de la siguiente manera
-```
-git help <comando>
-```
 
 <!-- Referencias de imagenes -->
 
@@ -112,3 +143,4 @@ git help <comando>
 
 ## ***Referencias***
 - [What's the difference between HEAD, working tree and index, in Git - StackOverflow](https://stackoverflow.com/questions/3689838/whats-the-difference-between-head-working-tree-and-index-in-git)
+- [Una referencia visual de Git - marklodato.github.io](https://marklodato.github.io/visual-git-guide/index-es.html)
