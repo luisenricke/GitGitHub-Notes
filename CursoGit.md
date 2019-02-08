@@ -1,10 +1,20 @@
 # Curso Git|GitHub
 
-## Introducción ¿Dondé nació todo esto?
+## Introducción
 
 ### Acerca del control de versiones
 
-### ¿Qué es demonios es Git?
+Al momento de desarrollar es importante poder llevar un registro historico de todos los cambios generados por todos los involucrados en el proyecto, en eso radica la popularidad de los controladores de versiones de hoy en día. Nos permiten administrar cualquier desarrollo de software de una manera eficaz y rápida.
+
+El correcto uso de esta tecnología puede ser un valioso aliado, ya que nos ahorra el hecho que tengamos que hacer nosotros mismos respaldos de archivos que a lo mejor nos olvidemos donde estén o modifiquemos en algun lugar que no sea el correcto, así como nos ofrece movernos libremente entre el historico de todos los archivos. También funciona perfecto para equipos de gran tamaña como también para quien trabaja en solitario por su flexibilidad en el flujo de trabajo.
+
+### Git, una breve explicación
+
+Git es un sistema de control de versiones distribuido, es decir, que existe el código fuente en el servidor y en los clientes donde se guarda el proyecto y hace una copia localmente en el equipo, siendo completamente independiente del servicio de alojamiento principal.
+
+La gran ventaja que nos brinda es la seguridad de que si algun día llegará a corromperse algunos archivos en el servidor o alguien borrará el proyecto principal por accidente, cualquiera que tuviera una copia del programa antes de que pasará una de las situaciones anteriormente planteadas pudiesé ser el salvador del equipo pudiendo resubir el repositorio y seguiría el curso del desarrollo como si no hubiera pasado nada.  
+
+![Control de versiones distribuido][git-distribuido]
 
 > Git fue creado pensando en la eficiencia y la confiabilidad del mantenimiento de versiones de aplicaciones cuando éstas tienen un gran número de archivos de código fuente, es decir Git nos proporciona las herramientas para desarrollar un trabajo en equipo de manera inteligente y rápida y por trabajo nos referimos a algún software o página que implique código el cual necesitemos hacerlo con un grupo de personas.  
 > -Andrés en [Codigo Facilito](https://codigofacilito.com/articulos/que-es-git).
@@ -30,7 +40,7 @@ git config --global -e
 
 ### Pedir ayuda a la linea de comandos
 
-Es muy fácil perdernos entre tanto que aprender y por ello git nos puede proporcionar una guía bastante útil cuando la necesitemos respecto a los comandos que hay, por ello es importante conocer las diferentes maneras de pedir ayuda.
+Es muy fácil perdernos entre tanto que aprender y por ello git nos puede proporcionar una guía bastante útil cuando la necesitemos respecto a los comandos que existen, por ello es importante conocer las diferentes maneras de pedir ayuda.
 
 ```git
 git help
@@ -140,6 +150,7 @@ git checkout -- .
 [git-data]: /img/git-data.png
 [git-branch]: /img/gitbranch.png
 [git-branch-create]: /img/gitbranch-create.png
+[git-distribuido]: /img/git-distribuido.png
 
 ## ***Referencias***
 - [What's the difference between HEAD, working tree and index, in Git - StackOverflow](https://stackoverflow.com/questions/3689838/whats-the-difference-between-head-working-tree-and-index-in-git)
