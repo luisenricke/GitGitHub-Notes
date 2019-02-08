@@ -34,6 +34,30 @@ git config --global user.email = <correo>
 
 #### Alias
 
+Los alias sirven para acortar ciertos comandos que son dificiles de recordar y cansados de teclear, por ello es necesario declararlos de manera global para que en cualquier momento se pueda utilizar.
+
+```git
+git config --global alias.<alias> "<comando>"
+git config --global alias.lg "log --oneline --decorate --all --graph"
+git config --global alias.s "status -s -b"
+```
+
+<!--https://styde.net/crear-alias-de-comandos-con-git/-->
+
+#### Archivo de configuración
+
+Para poder consultar todas las configuraciones que se han efectuado hasta ahora es necesario ejecutar el siguiente comentario.
+
+```git
+git config --global -l
+```
+
+Para poder modificar directamente las configuraciones en el archivo es necesario ejecutar el siguiente comando.
+
+```git
+git config --global -e
+```
+
 ### Pedir ayuda
 
 Es muy fácil perdernos entre tanto que aprender y por ello git nos puede proporcionar una guía bastante útil cuando la necesitemos respecto a los comandos que existen, por ello es importante conocer las diferentes maneras de pedir ayuda.
@@ -43,46 +67,6 @@ git help
 git help <comando>
 git <comando> --help
 ```
-
-## ***Conceptos de Git***
-
-### Commit
-
-Sirve para almacenar los cambios de manera local donde se guarda el apuntador de los archivos que estaban en el _stage_, unos metadatos con el autor y el mensaje explicativo de lo que sucedio en ese punto del tiempo.
-
-<!--![Breve ejemplo del proceso de un commit][gitcommit]-->
-
-Para poder llevar un mejor seguimiento del repositorio se recomienda que los mensajes se deben escribir en tiempo presente y sean lo más descriptivo posible de lo que se hizo.
-
-### Staging area / Index
-
-Es una especie de área de almacenamiento en donde se colocan los contenidos que se deben confirmar en el commit.
-
-### Head
-
-Es el apuntador que se encuentra siempre en el último commit realizado.
-
-### Status
-
-> _Muestra todas las rutas que tienen diferencias entre el archivo **index** y la posición actual de **HEAD**, las rutas que tienen diferencias entre la rama que se esta trabajando y el archivo **index** y las rutas de la rama en la que se esta trabjando que no están siendo seguidas por Git y que no estan siendo ignoradas por el archivo **.gitignore**._ [Documentación oficial de Git](https://git-scm.com/docs/git-status)  
-
-Esto quiere decir que se visualizará el estado de todos los archivos que contengan cambios que no hayan sigo archivados con un commit en el espacio de trabajo.
-
-### Branch
-
-Una rama de git es simplemente un apuntador ubicado en uno de los diferentes commits. La rama por defecto es la master. En cada commit que realicemos, la rama irá avanzando automaticamente.
-
-<!--![Apuntadores de la branch][git-branch]-->
-
-Cuando se manejan distintas ramas se crea un nuevo apuntador para que se pueda mover libremente en ella, y se comportara de la misma manera como en la master, en donde _Head_ será el apuntador donde nos dira la rama con la que estemos trabajando.
-
-<!--![Apuntador Head en la separación de la branch][git-branch-create]-->
-
-### Log
-
-Muestra el historial de los commits.
-
-<!--Checar como personalizar los logs https://coderwall.com/p/euwpig/a-better-git-log-->
 
 ## ***Configuración inicial***
 
@@ -116,6 +100,10 @@ Git permite clonar proyectos de dos maneras diferentes. La primera es através d
 
 ## ***Operaciones básicas con los comandos de Git***
 
+### Ignorar archivos
+
+
+
 ### Revisar los cambios en el proyecto
 
 Para poder identificar si hubo algun tipo de cambio, se agrago nuevos archivos o carpetas, es necesario utilizar **status**, que nos permite identificarlo de una manera grafica lo anterior dicho, ademas identificando si esta en el _stage_.
@@ -128,6 +116,12 @@ Una forma de abreviar la salida del comando y sea más visible lo que esta pasan
 
 ```git
 git status -s
+```
+
+Para poder conocer en el comando con que rama se está trabajando también pero de la forma acortada es agregandole la bandera de **branch**.
+
+```git
+git status -s -b
 ```
 
 ### Agregar archivos al Stage
@@ -197,12 +191,18 @@ git commit -m <mensaje>
 git commit -m "Primer commit"
 ```
 
-Existe una bandera para **commit** que hace que todos los archivos que hayan sido rastreados por el repositorio y hayan sufrido cambios sean agregados directamente al stage y se guarde a algun apuntador del tiempo.
+Existe una bandera para **commit** que hace que todos los archivos que hayan sido rastreados por el repositorio y hayan sufrido cambios sean agregados directamente al stage y se guarde a un apuntador del tiempo.
 
 ```git
 git commit -am <mensaje>
 git commit -am "Se actualizo index.html y los estilos"
 ```
+
+### Checar diferencias entre el último **commit** y lo modificado
+
+### Modificar el nombre de los archivos
+
+### Eliminar archivos
 
 ### Checar el historial de las capturas
 
@@ -211,6 +211,20 @@ Sirve para mostrar el historial de los commits hechos localmente.
 ```git
 git log
 ```
+
+Para tener una mejor presentación de los datos en donde se despliega en una sola linea con el hash, el nombre del commit y en donde se encuentra el _Head_ es necesario agregarle una bandera al comando.
+
+```git
+git log --oneline
+```
+
+Para poder visualizar todos los cambios que se fueron generando de una manera gráfica es necesario agregarle dos banderas al comando para que se pueda mover entre branches y merges.
+
+```git
+git log --graph --decorate
+```
+
+Cabe destacar que las banderas del log antes mencionados se pueden combinar para checar de una mejor manera lo que esta pasando al proyecto, es desición de cada uno elegir cual es la más funcional para cada uno.
 
 <!-- Referencias de imagenes -->
 [gitcommit]: /img/gitadd-gitcommit.png
@@ -228,6 +242,32 @@ git log
 <!--Sin editar del curso-->
 
 ## Anexos
+
+## ***Conceptos de Git***
+
+### Staging area / Index
+
+Es una especie de área de almacenamiento en donde se colocan los contenidos que se deben confirmar en el commit.
+
+### Head
+
+Es el apuntador que se encuentra siempre en el último commit realizado.
+
+### Status
+
+> _Muestra todas las rutas que tienen diferencias entre el archivo **index** y la posición actual de **HEAD**, las rutas que tienen diferencias entre la rama que se esta trabajando y el archivo **index** y las rutas de la rama en la que se esta trabjando que no están siendo seguidas por Git y que no estan siendo ignoradas por el archivo **.gitignore**._ [Documentación oficial de Git](https://git-scm.com/docs/git-status)  
+
+Esto quiere decir que se visualizará el estado de todos los archivos que contengan cambios que no hayan sigo archivados con un commit en el espacio de trabajo.
+
+### Branch
+
+Una rama de git es simplemente un apuntador ubicado en uno de los diferentes commits. La rama por defecto es la master. En cada commit que realicemos, la rama irá avanzando automaticamente.
+
+<!--![Apuntadores de la branch][git-branch]-->
+
+Cuando se manejan distintas ramas se crea un nuevo apuntador para que se pueda mover libremente en ella, y se comportara de la misma manera como en la master, en donde _Head_ será el apuntador donde nos dira la rama con la que estemos trabajando.
+
+<!--![Apuntador Head en la separación de la branch][git-branch-create]-->
 
 ### Comando de consola utiles
 
