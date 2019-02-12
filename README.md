@@ -10,8 +10,10 @@ Este es mi repositorio en donde llevare todo mi avance del 2019
    * Docker
    * PHP
    * Laravel
+   * Xamarin
 
 2. ¿En que campo quiero **profundizar** mi conocimiento?
+   * Ingeniería de Software
 
 
 3. ¿Que parte de la tecnología/concepto me **ejercitará** y me hará intentarlo?
