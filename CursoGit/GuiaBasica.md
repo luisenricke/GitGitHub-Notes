@@ -227,11 +227,11 @@ git log --graph --decorate
 Cabe destacar que las banderas del log antes mencionados se pueden combinar para checar de una mejor manera lo que esta pasando al proyecto, es desición de cada uno elegir cual es la más funcional para cada uno.
 
 <!-- Referencias de imagenes -->
-[gitcommit]: /img/gitadd-gitcommit.png
-[git-data]: /img/git-data.png
-[git-branch]: /img/gitbranch.png
-[git-branch-create]: /img/gitbranch-create.png
-[git-distribuido]: /img/git-distribuido.png
+[gitcommit]: img/gitadd-gitcommit.png
+[git-data]: img/git-data.png
+[git-branch]: img/gitbranch.png
+[git-branch-create]: img/gitbranch-create.png
+[git-distribuido]: img/git-distribuido.png
 
 ## ***Referencias***
 

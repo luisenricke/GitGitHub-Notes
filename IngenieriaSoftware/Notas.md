@@ -1,14 +1,19 @@
 # Documentación de la Ingeniería de Software
 
+## ***Introducción***
+
 ## Requisitos funcionales
-
-
 
 ## Requisitos no funcionales
 
-## Diagramas
-### Diagrama de contexto
-### BPMN
+
+## Diagramas | Modelos
+
+### Diagramas de descripción
+
+#### Diagrama de contexto
+
+<!-- ### BPMN
 ### Despliegue (Deployment diagram)
 
 
@@ -20,4 +25,9 @@
 ### Secuencia
 ### Componentes
 
-### Paquetes
+### Paquetes -->
+
+## ***Referencias***
+
+
+<!-- Referencias de imagenes -->
