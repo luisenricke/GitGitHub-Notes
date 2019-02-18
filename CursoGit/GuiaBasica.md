@@ -102,7 +102,13 @@ Git permite clonar proyectos de dos maneras diferentes. La primera es através d
 
 ### Ignorar archivos
 
+El archivo ``.gitignore`` especifica todos los archivos que no se podrán rastrear por git. Los archivos que ya hayan sido reastreados no sufriran los cambios. En cada linea de este archivo se especifica un patrón. Cuando Git decide que ignorar, normalmente checa todos los patronoes alojados en estos archivos.
 
+```git
+touch .gitignore
+```
+
+Para ahorrar un poco de tiempo se puede recurrir a la pagina web de [gitignore.io](https://www.gitignore.io/). Esta web nos ayuda a configurar de una manera fácil y rapida dependiendo del proyecto el archivo.
 
 ### Revisar los cambios en el proyecto
 
@@ -200,9 +206,41 @@ git commit -am "Se actualizo index.html y los estilos"
 
 ### Checar diferencias entre el último **commit** y lo modificado
 
+Al identificar los cambios, se puede llegar a saber en que se estaba trabajando la ultima vez que se modificaron los cambios
+
+```git
+git diff
+```
+
+Con el anterior comando es imposible conocer los cambios entre HEAD y lo que hay en el stage, por ello hay una bandera especial que se encarga de eso.
+
+```git
+git diff --staged
+```
+
 ### Modificar el nombre de los archivos
 
-### Eliminar archivos
+
+
+### Eliminar archivos del stage y los cambios hechos
+
+Para poder eliminar un archivo del stage es necesario ocupar un comando especial
+
+```git
+git reset HEAD <nombre del archivo>
+```
+
+Para poder dejar un archivo como estaba en el ultimo commit es necesario ejecutar un comando que pudiera ser muy delicado si hay cambios importantes que no se encuentren en el stage.
+
+```git
+git checkout -- <nombre del archivo>
+```
+
+El siguiente comando sirve para revertir los cambios y regresar los archivos al ultimo commit de todos los cambios que se realizaron y que no se encuentren en el stage.
+
+```git
+git checkout -- .
+```
 
 ### Checar el historial de las capturas
 
@@ -268,14 +306,6 @@ Una rama de git es simplemente un apuntador ubicado en uno de los diferentes com
 Cuando se manejan distintas ramas se crea un nuevo apuntador para que se pueda mover libremente en ella, y se comportara de la misma manera como en la master, en donde _Head_ será el apuntador donde nos dira la rama con la que estemos trabajando.
 
 <!--![Apuntador Head en la separación de la branch][git-branch-create]-->
-
-### Comando de consola utiles
-
-El siguiente comando sirve para revertir los cambios y regresar los archivos en el ultimo commit.
-
-```git
-git checkout -- .
-```
 
 ### Manejo de linea de comandos de git
 

@@ -13,7 +13,19 @@
 
 #### Diagrama de contexto
 
+### BPMN
+
+En  BPMN,  los  “Procesos  de  Negocio”  involucran  la  captura  de  una  se-cuencia ordenada de las actividades e información de apoyo. Modelar un Proceso  de  Negocio  implica  representar  cómo  una  empresa  realiza  sus  objetivos centrales; los objetivos por si mismos son importantes, pero por el momento no son capturados por la notación. Con BPMN, sólo los pro-cesos son modelados. 
+
+En el modelado de BPMN, se pueden percibir distintos niveles de mode-lado de procesos:
+
+- _Mapas  de  Procesos_—Simples  diagramas  de  flujo  de  las  activida-des; un diagrama de flujo sin más detalle que el nombre de las ac-tividades y tal vez la condiciones de decisión más generales.  
+- _Descripción  de  Procesos_—Proporcionan  información  más  exten-sa acerca del proceso, como las personas involucradas en llevarlo a cabo (roles), los datos, información, etc.
+- _Modelos de Proceso_—Diagramas de flujo detallados, con suficien-te  información  como  para  poder  analizar  el  proceso  y  simularlo.  Además,  esta  clase  de  modelo  más  detallado  permite  ejecutar  di-rectamente  el  modelo  o  bien  importarlo  a  herramientas  que  pue-dan ejecutar ese proceso (con trabajo adicional).
+
+
 <!-- ### BPMN
+
 ### Despliegue (Deployment diagram)
 
 
@@ -31,3 +43,8 @@
 
 
 <!-- Referencias de imagenes -->
+
+<!-- Referencias de libros-->
+
+[ian]: I. Sommerville, Ingeniería del software, 7th ed. Madrid: Pearson Educación, 2005.
+
