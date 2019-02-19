@@ -28,6 +28,7 @@ Para usar git es necesario estar identificados con un usuario y correo para pode
 ```git
 git config --global user.name = <nombre>
 git config --global user.email = <correo>
+git config core.autocrlf true
 ```
 
 #### Conexión con SSH
@@ -218,16 +219,24 @@ Con el anterior comando es imposible conocer los cambios entre HEAD y lo que hay
 git diff --staged
 ```
 
-### Modificar el nombre de los archivos
+### Eliminar archivos del stage y los cambios hechos, modificar el nombre de los commits
 
+Para poder modificar el nombre del ultimo commit generado es necesario utilizar
 
-
-### Eliminar archivos del stage y los cambios hechos
+```git
+git commit --amend
+```
 
 Para poder eliminar un archivo del stage es necesario ocupar un comando especial
 
 ```git
 git reset HEAD <nombre del archivo>
+```
+
+Para poder traer de vuelta al stage todos los cambios de la ultima captura es necesario ocupar un reset con una bandera especial del commit que se quiera actualizar, en este caso cuando se ocupa el HEAD^ para traer el ultimo commit que esta antes del HEAD, y con ello se puede hacer de nuevo el commit con un nuevo nombre
+
+```git
+git reset --soft HEAD^
 ```
 
 Para poder dejar un archivo como estaba en el ultimo commit es necesario ejecutar un comando que pudiera ser muy delicado si hay cambios importantes que no se encuentren en el stage.
@@ -240,6 +249,47 @@ El siguiente comando sirve para revertir los cambios y regresar los archivos al 
 
 ```git
 git checkout -- .
+```
+
+### Viajar en el tiempo 
+
+<!--Redactar esto-->
+Cuando se esta viajando en el tiempo es posible estar sin eliminar los cambios que se hicieron a traves de la bandera soft
+
+```git
+git reset --soft <hash del commit>
+```
+
+Para poder ir a un punto de la historia y los commits adelante de donde se viajara se pondran afuera del escenario y aun contendra las modificaciones
+
+```git
+git reset --mixed <hash del commit>
+```
+
+Para eliminar los commits delante del que esta es necesario utilizar el siguiente comando
+
+```git
+git reset --hard <hash del commit>
+```
+
+Para identificar todos los movimientos que se hicieron apesar de que hayan sido eliminador por un reset hard es posible recuperarlo obteniendo su hash en la tabla de todos los cambios que se hicieron
+
+```git
+git reflog
+git reset --hard <hash del commit>
+```
+
+<!--https://platzi.com/discusiones/1170-git-github/321-53433eef-e76d-4620-9bad-103597d1d943/
+https://stackoverflow.com/questions/3528245/whats-the-difference-between-git-reset-mixed-soft-and-hard-->
+
+### Cambiar y eliminar archivos con git
+
+```git
+git mv <nombre actual> <nombre nuevo>
+```
+
+```git
+git rm <nombre>
 ```
 
 ### Checar el historial de las capturas
@@ -276,7 +326,6 @@ Cabe destacar que las banderas del log antes mencionados se pueden combinar para
 - [What's the difference between HEAD, working tree and index, in Git - StackOverflow](https://stackoverflow.com/questions/3689838/whats-the-difference-between-head-working-tree-and-index-in-git)
 - [Una referencia visual de Git - marklodato.github.io](https://marklodato.github.io/visual-git-guide/index-es.html)
 
-
 <!--Sin editar del curso-->
 
 ## Anexos
@@ -299,13 +348,23 @@ Esto quiere decir que se visualizará el estado de todos los archivos que conten
 
 ### Branch
 
-Una rama de git es simplemente un apuntador ubicado en uno de los diferentes commits. La rama por defecto es la master. En cada commit que realicemos, la rama irá avanzando automaticamente.
+Una rama de git es simplemente un apuntador ubicado en uno de los diferentes commits. La rama por defecto es la master. En cada commit que realicemos, la rama irá avanzando automaticamente. Por default, la rama que se utiliza es la master.
 
 <!--![Apuntadores de la branch][git-branch]-->
 
 Cuando se manejan distintas ramas se crea un nuevo apuntador para que se pueda mover libremente en ella, y se comportara de la misma manera como en la master, en donde _Head_ será el apuntador donde nos dira la rama con la que estemos trabajando.
 
 <!--![Apuntador Head en la separación de la branch][git-branch-create]-->
+
+### Merge
+
+<!--investigar-->
+
+#### Fast-forward
+
+#### Uniones automaticas
+
+#### Manual (Merge commit)
 
 ### Manejo de linea de comandos de git
 
@@ -316,3 +375,5 @@ Cuando se manejan distintas ramas se crea un nuevo apuntador para que se pueda m
 ### Manejo de archivos con VIM
 
 - Para salir sin guardar cambios en los archivos es con ```:q```
+- Para editar el archivo con ``a``
+- Para salir y guardar cambios en los archivos es con ```:wq```
