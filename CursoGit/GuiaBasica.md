@@ -1,6 +1,6 @@
 # Curso Git | GitHub
 
-## ***Introducción***
+## Introducción
 
 ### Acerca del control de versiones
 
@@ -36,7 +36,6 @@ Los alias sirven para acortar ciertos comandos que son difíciles de recordar y 
 
 ```shell
 git config --global alias.<alias> ["comando-con-banderas"]
-
 ```
 
 Los alias que más ocupo son:
@@ -44,7 +43,6 @@ Los alias que más ocupo son:
 ```shell
 git config --global alias.lg "log --oneline --decorate --all --graph"
 git config --global alias.s "status -s -b"
-
 ```
 
 <!-- https://styde.net/crear-alias-de-comandos-con-git/ -->
@@ -69,11 +67,13 @@ Si no se configura esto, puede arrojar la siguiente advertencia ``warning: LF wi
 
 #### Conexión con SSH
 
-## ***Obteniendo un repositorio Git***
+## Fundamentos 
+
+### Generando un repositorio
 
 Para poder manejar cualquier proyecto con git es necesario tener una carpeta de **.git**, está es el encargada de llevar todo el control de nuestros archivos y el espacio tiempo en el que se hicieron los cambios.
 
-### Inicializando un repositorio
+#### Inicializando un repositorio
 
 Si el proyecto no ha tenido ninguna intervención con git es necesario inicializarlo para que empiece a llevar el control de todos los archivos.
 
@@ -88,7 +88,7 @@ git add README.md
 git commit -m "Initial commit"
 ```
 
-### Clonando un repositorio
+#### Clonando un repositorio
 
 Si deseas modificar o contribuir a un repositorio ya existente es necesario descargarlo en tu computadora, con esto tendrás una copia idéntica a la del servidor y así tienes la posibilidad de modificar todos los archivos como gustes.
 
@@ -99,21 +99,13 @@ git clone <url> <nombre-del-proyecto>
 
 Git permite clonar proyectos de dos maneras diferentes. La primera es através del protocolo HTTTPS pero también se puede usar el protocolo SSH. Cabe aclarar que la segunda opción tiene un filtro de seguridad para que identifique al usuario sin exponer datos confidenciales del desarrollador.
 
-## ***Operaciones básicas con los comandos de Git***
+### Cambios en el repositorio
 
-### Ignorar archivos
+#### Revisar los cambios en el proyecto ~ status
 
-El archivo ``.gitignore`` especifica todos los archivos que no se podrán rastrear por git. Los archivos que ya hayan sido reastreados no sufriran los cambios. En cada linea de este archivo se especifica un patrón. Cuando Git decide que ignorar, normalmente checa todos los patronoes alojados en estos archivos.
+El estado nos muestra todas las rutas que tienen diferencias entre el archivo **index** y la posición actual de **HEAD**, las rutas que tienen diferencias entre la rama que se esta trabajando y el archivo **index** y las rutas de la rama en la que se esta trabajando que no están siendo seguidas por Git y que no están siendo ignoradas por el archivo **.gitignore**. Esto quiere decir que se visualizará el estado de todos los archivos que contengan cambios que no hayan sigo archivados con un commit en el espacio de trabajo.
 
-```shell
-touch .gitignore
-```
-
-Para ahorrar un poco de tiempo se puede recurrir a la pagina web de [gitignore.io](https://www.gitignore.io/). Esta web nos ayuda a configurar de una manera fácil y rapida dependiendo del proyecto el archivo.
-
-### Revisar los cambios en el proyecto
-
-Para poder identificar si hubo algun tipo de cambio, se agrago nuevos archivos o carpetas, es necesario utilizar **status**, que nos permite identificarlo de una manera grafica lo anterior dicho, ademas identificando si esta en el _stage_.
+Para poder identificar si hubo algún tipo de cambio, se agrego nuevos archivos o carpetas, es necesario utilizar **status**, que nos permite identificarlo de una manera gráfica lo anterior dicho, ademas identificando si esta en el _stage_.
 
 ```shell
 git status
@@ -131,11 +123,9 @@ Para poder conocer en el comando con que rama se está trabajando también pero 
 git status -s -b
 ```
 
-### Agregar archivos al Stage
+#### Agregar archivos al escenario ~ stage
 
 Staging area o Index es una especie de área de almacenamiento en donde se colocan los contenidos que se deben confirmar en el commit.
-
-Lo más adecuado a la hora de estar trabajando en un proyecto real es simplificar las tareas para que el desarrollo sea más agil y alcanzable y esto se tiene que ver reflejado en el nombramiento de los commits.
 
 Hay varias maneras con las cuales se puede filtrar que archivos o carpetas se desea agregar al stage, esto ocacionara que en la busqueda de errores a través del tiempo sea más rápida y visible.
 
@@ -189,35 +179,22 @@ git reset <filtro>
 git reset  js/ css/ favicon.ico
 ```
 
-### Haciendo una captura del tiempo
+#### Ignorar archivos ~ gitignore
 
-Para poder guardar todos los cambios que se generaron en los archivos que estaban en el stage, es necesario validarlo con un **commit**. Esto permitirá que se genere un registro de ese punto en el tiempo.
+A veces, tendrás algún tipo de archivo que no quieres que Git añada automáticamente o más aun, que ni siquiera quieras que aparezca como no rastreado.Este suele ser el caso de archivos generados automáticamente como trazas
+o archivos creados por tu sistema de compilación. 
 
-Se guardará el apuntador de los archivos que estaban en el _stage_, unos metadatos con el autor y el mensaje explicativo de lo que sucedio en ese punto del tiempo.
-
-```shell
-git commit -m <mensaje>
-git commit -m "Primer commit"
-```
-
-Existe una bandera para **commit** que hace que todos los archivos que hayan sido rastreados por el repositorio y hayan sufrido cambios sean agregados directamente al stage y se guarde a un apuntador del tiempo.
+El archivo ``.gitignore`` especifica todos los archivos que no se podrán rastrear por git. Los archivos que ya hayan sido rastreados no sufrirán los cambios. En cada linea de este archivo se especifica un patrón. Cuando Git decide que ignorar, normalmente checa todos los patrones alojados en estos archivos.
 
 ```shell
-git commit -am <mensaje>
-git commit -am "Se actualizo index.html y los estilos"
+touch .gitignore
 ```
 
-##### Head
+Para ahorrar un poco de tiempo se puede recurrir a la pagina web de [gitignore.io](https://www.gitignore.io/). Esta web nos ayuda a configurar de una manera fácil y rápida dependiendo del proyecto el archivo.
 
-Es el apuntador que se encuentra siempre en el último commit realizado.
+#### Checar diferencias entre el stage y el commit ~ diff
 
-##### Status
-
-> _Muestra todas las rutas que tienen diferencias entre el archivo **index** y la posición actual de **HEAD**, las rutas que tienen diferencias entre la rama que se esta trabajando y el archivo **index** y las rutas de la rama en la que se esta trabjando que no están siendo seguidas por Git y que no estan siendo ignoradas por el archivo **.gitignore**._ [Documentación oficial de Git](https://git-scm.com/docs/git-status)  
-
-Esto quiere decir que se visualizará el estado de todos los archivos que contengan cambios que no hayan sigo archivados con un commit en el espacio de trabajo.
-
-### Checar diferencias entre el último **commit** y lo modificado
+El diferenciador nos sirve para responder estas dos preguntas: ¿Qué se ha cambiado pero aun no se pasa al stage? y ¿Qué se ha preparado y está listo para confirmar? A pesar de que ``git status`` responde a estas preguntas de forma muy general listando el nombre de los archivos, `git diff` te muestra las líneas exactas que fueron añadidas y eliminadas, es decir, desglosa con mayor exactitud que se esta modificando.
 
 Al identificar los cambios, se puede llegar a saber en que se estaba trabajando la ultima vez que se modificaron los cambios
 
@@ -231,9 +208,105 @@ Con el anterior comando es imposible conocer los cambios entre HEAD y lo que hay
 git diff --staged
 ```
 
-### Eliminar archivos del stage y los cambios hechos, modificar el nombre de los commits
+#### Haciendo una captura del tiempo ~ commit
 
-Para poder modificar el nombre del ultimo commit generado es necesario utilizar
+Para poder guardar todos los cambios que se generaron en los archivos que estaban en el stage, es necesario validarlo con un **commit**. Esto permitirá que se genere un registro de ese punto en el tiempo.
+
+Lo más adecuado a la hora de estar trabajando en un proyecto real es simplificar las tareas para que el desarrollo sea más ágil y alcanzable y esto se tiene que ver reflejado en el nombramiento de los commits.
+
+Se guardará el apuntador de los archivos que estaban en el _stage_, unos metadatos con el autor y el mensaje explicativo de lo que sucedió en ese punto del tiempo.
+
+```shell
+git commit -m <mensaje>
+git commit -m "Primer commit"
+```
+
+Existe una bandera para **commit** que hace que todos los archivos que hayan sido rastreados por el repositorio y hayan sufrido cambios sean agregados directamente al stage y se guarde a un apuntador del tiempo.
+
+```shell
+git commit -am <mensaje>
+git commit -am "Se actualizo index.html y los estilos"
+```
+
+El apuntador de HEAD es el que se encuentra siempre en el último commit en la linea del tiempo.
+
+#### Cambiar el nombre de archivos ~ mv
+
+Git no rastrea explícitamente los cambios de nombre en archivos. Si se renombra un archivo en Git, no se guardará ningún metadato que indique que se cambio. Sin embargo, Git es bastante listo como para detectar estos cambios luego que los has hecho.
+
+```shell
+git mv <nombre-actual> <nombre-nuevo>
+```
+
+Sin embargo, eso es equivalente a ejecutar los siguientes comandos:
+
+```shell
+git rm <nombre-archivo>
+git add <nombre-archivo>
+```
+
+#### Eliminar archivos ~ rm
+
+Para eliminar archivos de Git, se debe eliminar de los archivos rastreados (o mejor dicho, eliminarlos del área de preparación) y luego confirmar. Para ello existe el siguiente comando, que además elimina el archivo del directorio de trabajo de manera que no aparezca la próxima vez como un archivo no rastreado.
+
+```shell
+git rm <nombre>
+```
+
+Otra cosa que se puede hacer es mantener ciertos archivos en tu directorio de trabajo pero eliminarlo del área de preparación. En otras palabras, se quisiera mantener el archivo en tu disco duro pero sin que Git lo siga rastreando. Esto puede ser particularmente útil si olvidaste añadir algo en tu archivo `.gitignore` y lo preparaste accidentalmente. 
+
+```shell
+git rm --cached README
+```
+
+### Checar el historial de las capturas
+
+Sirve para mostrar el historial de los commits hechos localmente.
+
+```shell
+git log
+```
+
+Para tener las estadísticas sobre los archivos modificados en cada uno de los commits es necesario agregarle una bandera al comando.
+
+```shell
+git log --stat
+```
+
+Para mostrar solamente las últimas n commits que se hicieron es necesario combinar una bandera con el número deseado.
+
+```shell
+git log -<numero>
+git log -2
+```
+
+Para mostrar todos los commits respecto a ciertas fechas especificas es necesario indicar unas banderas especiales en las que se necesita poner las fechas exactas.
+
+```shell
+git log --after=["fecha"] --before=["fecha"]
+git log --after="2019-02-15" --before="2019-02-20" 
+git log --after="2019-02-12T16:00:00-00:00"
+git log --after="1 month ago"
+git log --after="2 weeks 3 days 2 hours 30 minutes 59 seconds ago"
+```
+
+Para tener una mejor presentación de los datos en donde se despliega en una sola linea con el hash, el nombre del commit y en donde se encuentra el _HEAD_ es necesario agregarle una bandera al comando.
+
+```shell
+git log --oneline
+```
+
+Para poder visualizar todos los cambios que se fueron generando de una manera gráfica es necesario agregarle dos banderas al comando para que se pueda mover entre branches y merges.
+
+```shell
+git log --graph --decorate
+```
+
+Cabe destacar que las banderas del log antes mencionados se pueden combinar para checar de una mejor manera lo que esta pasando al proyecto, es decisión de cada uno elegir cual es la más funcional para cada uno.
+
+### Deshacer cosas importantes
+
+Para poder modificar el nombre del ultimo commit generado es necesario utilizar el siguiente comando.
 
 ```shell
 git commit --amend
@@ -242,19 +315,19 @@ git commit --amend
 Para poder eliminar un archivo del stage es necesario ocupar un comando especial
 
 ```shell
-git reset HEAD <nombre del archivo>
+git reset HEAD <nombre-archivo>
 ```
 
-Para poder traer de vuelta al stage todos los cambios de la ultima captura es necesario ocupar un reset con una bandera especial del commit que se quiera actualizar, en este caso cuando se ocupa el HEAD^ para traer el ultimo commit que esta antes del HEAD, y con ello se puede hacer de nuevo el commit con un nuevo nombre
+Para poder traer de vuelta al stage todos los cambios del penúltima commit es necesario ocupar un reset con una bandera especial del commit que se quiera actualizar, en este caso cuando se ocupa el HEAD^ y con ello se puede hacer de nuevo el commit con un nuevo nombre
 
 ```shell
 git reset --soft HEAD^
 ```
 
-Para poder dejar un archivo como estaba en el ultimo commit es necesario ejecutar un comando que pudiera ser muy delicado si hay cambios importantes que no se encuentren en el stage.
+Para poder dejar un archivo como estaba en el ultimo commit es necesario ejecutar un comando que pudiera ser muy delicado si hay cambios importantes que no se encuentren en el stage, no se podrá recuperar los datos una vez ejecutado este comando.
 
 ```shell
-git checkout -- <nombre del archivo>
+git checkout -- <nombre-archivo>
 ```
 
 El siguiente comando sirve para revertir los cambios y regresar los archivos al ultimo commit de todos los cambios que se realizaron y que no se encuentren en el stage.
@@ -262,6 +335,80 @@ El siguiente comando sirve para revertir los cambios y regresar los archivos al 
 ```shell
 git checkout -- .
 ```
+
+### Proyectos remotos
+
+#### Ver 
+
+#### Añadir ~ add
+
+#### Comparar ~ fetch
+
+#### Enviar ~ push
+
+#### Inspeccionar ~ show
+
+#### Modificar ~ rename
+
+#### Eliminar ~ rm
+
+### Etiquetas ~ tag
+
+Git tiene la habilidad de etiquetar puntos específicos en la historia como importantes. Generalmente la gente usa esta funcionalidad para marcar puntos donde se ha lanzado alguna versión (v1.0, y así sucesivamente).
+
+Para ver todos los tags
+
+```shell
+git tag 
+```
+
+Para crear un tag es necesario
+
+```shell
+git tag <nombre del tag>
+git tag -a <version> -m ["mensaje"]
+git tag -a <version> <hash del commit al que se quiera poner tag> -m ["mensaje"]
+```
+
+Para borrar un tag es necesario
+
+```shell
+git tag -d <nombre del tag>
+```
+
+Para ver todos los cambios hechos en ese punto de la historia con el tag
+
+```shell
+git show <nombre del tag>
+```
+
+Por defecto, el comando `git push` no transfiere las etiquetas a los servidores remotos. Se debe de enviar las etiquetas de forma explícita al servidor luego de que se hayas creado.
+
+```shell
+git push origin <nombre-etiqueta>
+```
+
+Si se quiere enviar varias etiquetas a la vez, se puede usar una bandera especial con el comando de push. Se enviarán todas las etiquetas que aun no existan en él.
+
+```shell
+git push origin --tags
+```
+
+## Ramificaciones
+
+### Acerca de ramas
+
+### Procedimientos básicos para ramificar y fusionar
+
+### Gestionar ramas
+
+### Flujos de trabajos
+
+### Ramas remotas
+
+### Reorganizar el trabajo
+
+## Operaciones básicas con los comandos de Git
 
 ### Viajar en el tiempo 
 
@@ -293,38 +440,6 @@ git reset --hard <hash del commit>
 
 <!-- https://platzi.com/discusiones/1170-git-github/321-53433eef-e76d-4620-9bad-103597d1d943/
 https://stackoverflow.com/questions/3528245/whats-the-difference-between-git-reset-mixed-soft-and-hard -->
-
-### Cambiar y eliminar archivos con git
-
-```shell
-git mv <nombre actual> <nombre nuevo>
-```
-
-```shell
-git rm <nombre>
-```
-
-### Checar el historial de las capturas
-
-Sirve para mostrar el historial de los commits hechos localmente.
-
-```shell
-git log
-```
-
-Para tener una mejor presentación de los datos en donde se despliega en una sola linea con el hash, el nombre del commit y en donde se encuentra el _Head_ es necesario agregarle una bandera al comando.
-
-```shell
-git log --oneline
-```
-
-Para poder visualizar todos los cambios que se fueron generando de una manera gráfica es necesario agregarle dos banderas al comando para que se pueda mover entre branches y merges.
-
-```shell
-git log --graph --decorate
-```
-
-Cabe destacar que las banderas del log antes mencionados se pueden combinar para checar de una mejor manera lo que esta pasando al proyecto, es desición de cada uno elegir cual es la más funcional para cada uno.
 
 ### Manejo de branchs
 
@@ -405,48 +520,18 @@ git merge <rama-a-unir>
 git commit -am ["Mensaje de resolución de conflicto"]
 ```
 
-### Tags
-Git tiene la habilidad de etiquetar puntos específicos en la historia como importantes. Generalmente la gente usa esta funcionalidad para marcar puntos donde se ha lanzado alguna versión (v1.0, y así sucesivamente).
-
-Para ver todos los tags
-
-```shell
-git tag 
-```
-
-Para crear un tag es necesario
-
-```shell
-git tag <nombre del tag>
-git tag -a <version> -m ["mensaje"]
-git tag -a <version> <hash del commit al que se quiera poner tag> -m ["mensaje"]
-```
-
-Para borrar un tag es necesario
-
-```shell
-git tag -d <nombre del tag>
-```
-
-Para ver todos los cambios hechos en ese punto de la historia con el tag
-
-```shell
-git show <nombre del tag>
-```
-
 <!-- Referencias de imagenes -->
+
 [gitcommit]: img/gitadd-gitcommit.png
 [git-data]: img/git-data.png
 [git-branch]: img/gitbranch.png
 [git-branch-create]: img/gitbranch-create.png
 [git-distribuido]: img/git-distribuido.png
 
-## ***Referencias***
+## Referencias
 
 - [What's the difference between HEAD, working tree and index, in Git - StackOverflow](https://stackoverflow.com/questions/3689838/whats-the-difference-between-head-working-tree-and-index-in-git)
 - [Una referencia visual de Git - marklodato.github.io](https://marklodato.github.io/visual-git-guide/index-es.html)
-
-<!--Sin editar del curso-->
 
 ## Anexos
 
@@ -485,4 +570,6 @@ git config --global -e
 - Para salir sin guardar cambios en los archivos es con ```:q```
 - Para editar el archivo con ``a``
 - Para salir y guardar cambios en los archivos es con ```:wq```
+
+<!-- Sin editar -->
 
