@@ -65,7 +65,7 @@ Configuración para OSX y Linux:
 git config --global core.autocrlf input
 ```
 
-Si no se configura esto, puede arrojar la siguiente advertencia ``warning: LF will be replaced by CRLF in [FILE_NAME]. The file will have its original line endings in your working directory.``, en donde se dispara cuando se están haciendo los commits.
+Si no se configura esto, puede arrojar la siguiente advertencia ``warning: LF will be replaced by CRLF in [FILE_NAME]. The file will have its original line endings in your working directory``, en donde se dispara cuando se están haciendo los commits.
 
 #### Conexión con SSH
 
@@ -133,6 +133,8 @@ git status -s -b
 
 ### Agregar archivos al Stage
 
+Staging area o Index es una especie de área de almacenamiento en donde se colocan los contenidos que se deben confirmar en el commit.
+
 Lo más adecuado a la hora de estar trabajando en un proyecto real es simplificar las tareas para que el desarrollo sea más agil y alcanzable y esto se tiene que ver reflejado en el nombramiento de los commits.
 
 Hay varias maneras con las cuales se puede filtrar que archivos o carpetas se desea agregar al stage, esto ocacionara que en la busqueda de errores a través del tiempo sea más rápida y visible.
@@ -140,28 +142,28 @@ Hay varias maneras con las cuales se puede filtrar que archivos o carpetas se de
 Para agregar un único archivo:
 
 ```shell
-git add <nombre del archivo>
+git add <nombre-del-archivo>
 git add ejemplo.html
 ```
 
 Para agregar muchos archivos a la vez:
 
 ```shell
-git add <lista de archivos>
+git add <archivo-1>...<archivo-n>
 git add ejemplo.html css/style.css js/app.js
 ```
 
 Para agregar una carpeta en especifico con todo su contenido:
 
 ```shell
-git add <nombre de la carpeta>/
+git add <nombre-carpeta>/
 git add js/
 ```
 
 Para agregar todos los archivos con un tipo de extensión en la direccion actual:
 
 ```shell
-git add *.<nombre del tipo de archivo>
+git add *.<nombre-tipo-archivo>
 git add *.jpg
 ```
 
@@ -205,6 +207,16 @@ git commit -am <mensaje>
 git commit -am "Se actualizo index.html y los estilos"
 ```
 
+##### Head
+
+Es el apuntador que se encuentra siempre en el último commit realizado.
+
+##### Status
+
+> _Muestra todas las rutas que tienen diferencias entre el archivo **index** y la posición actual de **HEAD**, las rutas que tienen diferencias entre la rama que se esta trabajando y el archivo **index** y las rutas de la rama en la que se esta trabjando que no están siendo seguidas por Git y que no estan siendo ignoradas por el archivo **.gitignore**._ [Documentación oficial de Git](https://git-scm.com/docs/git-status)  
+
+Esto quiere decir que se visualizará el estado de todos los archivos que contengan cambios que no hayan sigo archivados con un commit en el espacio de trabajo.
+
 ### Checar diferencias entre el último **commit** y lo modificado
 
 Al identificar los cambios, se puede llegar a saber en que se estaba trabajando la ultima vez que se modificaron los cambios
@@ -223,7 +235,7 @@ git diff --staged
 
 Para poder modificar el nombre del ultimo commit generado es necesario utilizar
 
-```java
+```shell
 git commit --amend
 ```
 
@@ -316,10 +328,18 @@ Cabe destacar que las banderas del log antes mencionados se pueden combinar para
 
 ### Manejo de branchs
 
+Una rama de git es simplemente un apuntador ubicado en uno de los diferentes commits. La rama por defecto es la master. En cada commit que realicemos, la rama irá avanzando automaticamente. Por default, la rama que se utiliza es la master.
+
+<!--![Apuntadores de la branch][git-branch]-->
+
+Cuando se manejan distintas ramas se crea un nuevo apuntador para que se pueda mover libremente en ella, y se comportara de la misma manera como en la master, en donde _Head_ será el apuntador donde nos dira la rama con la que estemos trabajando.
+
+<!--![Apuntador Head en la separación de la branch][git-branch-create]-->
+
 Para checar todas las ramas existentes y en cual se está
 
 ```shell
-git brach
+git branch
 ```
 
 Para moverse entre ramas
@@ -331,7 +351,7 @@ git checkout <nombre-rama>
 Para poder crear nuevas ramas es necesario ocupar el comando
 
 ```shell
-git brach <nombre-branch>
+git branch <nombre-branch>
 ```
 
 Para poder crear nuevas ramas y al mismo tiempo moverse en ellas es necesario ocupar el comando
@@ -352,28 +372,41 @@ Para eliminar una rama
 git branch -d <nombre de la rama>
 ```
 
-Para poder hacer cualquier merge es necesario estar en la rama en la cual se quieran agregar todos los cambios.
+El proceso de fusionado se conoce como merge y puede llegar a ser muy simple o más complejo si se encuentran cambios que Git no pueda procesar de manera automática. Git para procesar los merge usa un antecesor común y comprueba los cambios que se han introducido al proyecto desde entonces, combinando el código de ambas ramas. 
 
-#### Merge: Fast-fordward
+Para poder hacer cualquier merge es necesario estar en la rama en la cual se quieran agregar todos los cambios de la otra rama.
 
-Para unir las ramas
+#### Fast-fordward
 
-```shell
-git merge <rama a unir>
-```
-
-#### Merge: Automatico
+Git simplemente mueve el puntero hacia adelante para fusionar los cambios de la rama secundaria a la principal. Para expresarlo de otra manera, cuando intenta un merge  con un commit con otro al que se puede llegar siguiendo el historial del primer commit, Git simplifica las cosas moviendo el puntero hacia adelante porque no hay archivos que se hayan modificado en las dos ramas al mismo tiempo.
 
 ```shell
-git merge <rama a unir>
+git merge <rama-a-unir>
 ```
 
-#### Merge: Con conflictos
+#### Merge commit
 
-Primero se debe de hacer el merge y despues el commit de la resolución del conflicto
+En lugar de simplemente mover el puntero de la rama hacia adelante, Git crea una nueva instantánea que resulta de esta combinación de tres vías y crea automáticamente una nueva confirmación que apunta a ella. Esto se conoce como un merge commit, y es especial porque tiene más de un padre.
+
+```shell
+git merge <rama-a-unir>
+```
+
+#### Merge conflicts
+
+En algunas ocasiones, los procesos de fusión no suelen ser fluidos. Si hay modificaciones dispares en una misma porción de un mismo archivo en las dos ramas distintas que pretendes fusionar, Git no será capaz de fusionarlas directamente.Si se cambia la misma parte del mismo archivo de manera diferente en las dos ramas que está fusionando, Git no podrá combinarlas de manera limpia y causará problemas.
+
+Git no crea automáticamente una nueva fusión confirmada (merge commit). Sino que hace una pausa en el proceso, esperando a que tu resuelvas el conflicto. Para ver qué archivos permanecen sin fusionar en un determinado momento conflictivo de una fusión, puedes usar el comando ``git status``.
+
+Primero se debe de hacer el merge y despues el commit de la resolución del conflicto.
+
+```shell
+git merge <rama-a-unir>
+git commit -am ["Mensaje de resolución de conflicto"]
+```
 
 ### Tags
-<!--Investigar que es un tag-->
+Git tiene la habilidad de etiquetar puntos específicos en la historia como importantes. Generalmente la gente usa esta funcionalidad para marcar puntos donde se ha lanzado alguna versión (v1.0, y así sucesivamente).
 
 Para ver todos los tags
 
@@ -385,8 +418,8 @@ Para crear un tag es necesario
 
 ```shell
 git tag <nombre del tag>
-git tag -a <version> -m <mensaje>
-git tag -a <version> <hash del commit al que se quiera poner tag> -m <mensaje>
+git tag -a <version> -m ["mensaje"]
+git tag -a <version> <hash del commit al que se quiera poner tag> -m ["mensaje"]
 ```
 
 Para borrar un tag es necesario
@@ -441,49 +474,11 @@ De igual manera, aveces, se tendrá la necesidad de modificar las configuracione
 git config --global -e
 ```
 
-
-
-## ***Conceptos de Git***
-
-### Staging area / Index
-
-Es una especie de área de almacenamiento en donde se colocan los contenidos que se deben confirmar en el commit.
-
-### Head
-
-Es el apuntador que se encuentra siempre en el último commit realizado.
-
-### Status
-
-> _Muestra todas las rutas que tienen diferencias entre el archivo **index** y la posición actual de **HEAD**, las rutas que tienen diferencias entre la rama que se esta trabajando y el archivo **index** y las rutas de la rama en la que se esta trabjando que no están siendo seguidas por Git y que no estan siendo ignoradas por el archivo **.gitignore**._ [Documentación oficial de Git](https://git-scm.com/docs/git-status)  
-
-Esto quiere decir que se visualizará el estado de todos los archivos que contengan cambios que no hayan sigo archivados con un commit en el espacio de trabajo.
-
-### Branch
-
-Una rama de git es simplemente un apuntador ubicado en uno de los diferentes commits. La rama por defecto es la master. En cada commit que realicemos, la rama irá avanzando automaticamente. Por default, la rama que se utiliza es la master.
-
-<!--![Apuntadores de la branch][git-branch]-->
-
-Cuando se manejan distintas ramas se crea un nuevo apuntador para que se pueda mover libremente en ella, y se comportara de la misma manera como en la master, en donde _Head_ será el apuntador donde nos dira la rama con la que estemos trabajando.
-
-<!--![Apuntador Head en la separación de la branch][git-branch-create]-->
-
-### Merge
-
-<!--investigar-->
-
-#### Fast-forward
-
-#### Uniones automaticas
-
-#### Manual (Merge commit)
-
 ### Manejo de linea de comandos de git
 
 - Limpiar la consola ```clear```
 - Moverse entre carpetas ```cd <direccion>``` o ```cd ..```
-- listar todos los archivos incluso los oultos ```ls -al```
+- listar todos los archivos incluso los ocultos ```ls -al```
 
 ### Manejo de archivos con VIM
 
