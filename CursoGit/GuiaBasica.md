@@ -21,80 +21,80 @@ La gran ventaja que nos brinda es la seguridad de que si algun día llegará a c
 
 ### Configuración
 
-#### Inicial
+#### Primera configuración
 
-Para usar git es necesario estar identificados con un usuario y correo para poder identificar de una manera rápida y sencilla quién esta haciendo los cambios en los repositorios.  
+Antes que nada, es necesario hacer unas configuraciones a git para poder identificar al usuario y correo para saber quien esta interactuando en los repositorios.
 
-```git
-git config --global user.name = <nombre>
-git config --global user.email = <correo>
-git config core.autocrlf true
+```shell
+git config --global user.name = ["nombre-usuario"]
+git config --global user.email = ["correo"]
 ```
-
-#### Conexión con SSH
 
 #### Alias
 
-Los alias sirven para acortar ciertos comandos que son dificiles de recordar y cansados de teclear, por ello es necesario declararlos de manera global para que en cualquier momento se pueda utilizar.
+Los alias sirven para acortar ciertos comandos que son difíciles de recordar y cansados de teclear, por ello es necesario declararlos de manera global para que en cualquier momento se pueda utilizar.
 
-```git
-git config --global alias.<alias> "<comando>"
+```shell
+git config --global alias.<alias> ["comando-con-banderas"]
+
+```
+
+Los alias que más ocupo son:
+
+```shell
 git config --global alias.lg "log --oneline --decorate --all --graph"
 git config --global alias.s "status -s -b"
+
 ```
 
-<!--https://styde.net/crear-alias-de-comandos-con-git/-->
+<!-- https://styde.net/crear-alias-de-comandos-con-git/ -->
 
-#### Archivo de configuración
+#### Formateo y espacios de los archivos
 
-Para poder consultar todas las configuraciones que se han efectuado hasta ahora es necesario ejecutar el siguiente comentario.
+Cuando se trabaja en equipo o en solitario pero en dos sistemas operativos distintos es común que se presente el error del como esta formateado los archivos, ya que Windows, Linux y OSX manejan de distinta manera los caracteres de una nueva linea.
 
-```git
-git config --global -l
+Configuración para Windows:
+
+```shell
+git config --global core.autocrlf true
 ```
 
-Para poder modificar directamente las configuraciones en el archivo es necesario ejecutar el siguiente comando.
+Configuración para OSX y Linux:
 
-```git
-git config --global -e
+```shell
+git config --global core.autocrlf input
 ```
 
-### Pedir ayuda
+Si no se configura esto, puede arrojar la siguiente advertencia ``warning: LF will be replaced by CRLF in [FILE_NAME]. The file will have its original line endings in your working directory.``, en donde se dispara cuando se están haciendo los commits.
 
-Es muy fácil perdernos entre tanto que aprender y por ello git nos puede proporcionar una guía bastante útil cuando la necesitemos respecto a los comandos que existen, por ello es importante conocer las diferentes maneras de pedir ayuda.
+#### Conexión con SSH
 
-```git
-git help
-git help <comando>
-git <comando> --help
-```
+## ***Obteniendo un repositorio Git***
 
-## ***Configuración inicial***
-
-Para poder inicializar cualquier proyecto con un control de versiones es necesario tener una carptea de **.git**, está es el encargada de llevar todo el control de nuestros archivos y el espacio tiempo en el que se hicieron los cambios.
+Para poder manejar cualquier proyecto con git es necesario tener una carpeta de **.git**, está es el encargada de llevar todo el control de nuestros archivos y el espacio tiempo en el que se hicieron los cambios.
 
 ### Inicializando un repositorio
 
-Si se esta iniciando desde cero el proyecto es necesario ejecutar el siguiente comando para que empiece a llevar el control de los archivos.
+Si el proyecto no ha tenido ninguna intervención con git es necesario inicializarlo para que empiece a llevar el control de todos los archivos.
 
-```git
+```shell
 git init
 ```
 
-Se recomienda que despues de hacer lo anterior se agregue un archivo _README_ y se haga el primer commit porque es el archivo que sirve como una breve descripción del repositorio, una carta de presentación o simplemente información necesaria para entender lo que se desarrolla.
+Se recomienda que después inicializar el proyecto se agregue un archivo llamado _README.md_ y se haga el primer commit, ya que este archivo en GitHub o GitLab se muestra en la página principal del proyecto y sirve para mostrar una breve descripción del repositorio o una carta de presentación o simplemente información necesaria para entender lo que se desarrolló.
 
-```git
+```shell
 git add README.md
-git commit -m 'Initial commit'
+git commit -m "Initial commit"
 ```
 
 ### Clonando un repositorio
 
-Si deseas modificar o contribuir a un repositorio ya existente es necesario descargarlo en tu computadora, con esto tendras una copia identica a la del servidor y así tener la posibilidad modificar todos los archivos como gustes.
+Si deseas modificar o contribuir a un repositorio ya existente es necesario descargarlo en tu computadora, con esto tendrás una copia idéntica a la del servidor y así tienes la posibilidad de modificar todos los archivos como gustes.
 
-```git
-git clone [url]
-git clone [url] <nombre>
+```shell
+git clone <url>
+git clone <url> <nombre-del-proyecto>
 ```
 
 Git permite clonar proyectos de dos maneras diferentes. La primera es através del protocolo HTTTPS pero también se puede usar el protocolo SSH. Cabe aclarar que la segunda opción tiene un filtro de seguridad para que identifique al usuario sin exponer datos confidenciales del desarrollador.
@@ -105,7 +105,7 @@ Git permite clonar proyectos de dos maneras diferentes. La primera es através d
 
 El archivo ``.gitignore`` especifica todos los archivos que no se podrán rastrear por git. Los archivos que ya hayan sido reastreados no sufriran los cambios. En cada linea de este archivo se especifica un patrón. Cuando Git decide que ignorar, normalmente checa todos los patronoes alojados en estos archivos.
 
-```git
+```shell
 touch .gitignore
 ```
 
@@ -115,19 +115,19 @@ Para ahorrar un poco de tiempo se puede recurrir a la pagina web de [gitignore.i
 
 Para poder identificar si hubo algun tipo de cambio, se agrago nuevos archivos o carpetas, es necesario utilizar **status**, que nos permite identificarlo de una manera grafica lo anterior dicho, ademas identificando si esta en el _stage_.
 
-```git
+```shell
 git status
 ```
 
 Una forma de abreviar la salida del comando y sea más visible lo que esta pasando en el stage, es poniendole la bandera de **short**.
 
-```git
+```shell
 git status -s
 ```
 
 Para poder conocer en el comando con que rama se está trabajando también pero de la forma acortada es agregandole la bandera de **branch**.
 
-```git
+```shell
 git status -s -b
 ```
 
@@ -139,49 +139,49 @@ Hay varias maneras con las cuales se puede filtrar que archivos o carpetas se de
 
 Para agregar un único archivo:
 
-```git
+```shell
 git add <nombre del archivo>
 git add ejemplo.html
 ```
 
 Para agregar muchos archivos a la vez:
 
-```git
+```shell
 git add <lista de archivos>
 git add ejemplo.html css/style.css js/app.js
 ```
 
 Para agregar una carpeta en especifico con todo su contenido:
 
-```git
+```shell
 git add <nombre de la carpeta>/
 git add js/
 ```
 
 Para agregar todos los archivos con un tipo de extensión en la direccion actual:
 
-```git
+```shell
 git add *.<nombre del tipo de archivo>
 git add *.jpg
 ```
 
 Para agregar todos los archivos con un tipo de extensión en todo el proyecto:
 
-```git
+```shell
 git add "*.<nombre del tipo de archivo>"
 git add "*.jpg"
 ```
 
 Para agregar todos los archivos con un tipo de extensión en la carpeta especificada:
 
-```git
+```shell
 git add <nombre de carpeta>/*.<nombre del tipo de archivo>
 git add img/*.jpg
 ```
 
 Para agregar todos excluyendo ciertos archivos o carpetas con filtro:
 
-```git
+```shell
 git add .
 git reset <filtro>
 git reset  js/ css/ favicon.ico
@@ -193,14 +193,14 @@ Para poder guardar todos los cambios que se generaron en los archivos que estaba
 
 Se guardará el apuntador de los archivos que estaban en el _stage_, unos metadatos con el autor y el mensaje explicativo de lo que sucedio en ese punto del tiempo.
 
-```git
+```shell
 git commit -m <mensaje>
 git commit -m "Primer commit"
 ```
 
 Existe una bandera para **commit** que hace que todos los archivos que hayan sido rastreados por el repositorio y hayan sufrido cambios sean agregados directamente al stage y se guarde a un apuntador del tiempo.
 
-```git
+```shell
 git commit -am <mensaje>
 git commit -am "Se actualizo index.html y los estilos"
 ```
@@ -209,13 +209,13 @@ git commit -am "Se actualizo index.html y los estilos"
 
 Al identificar los cambios, se puede llegar a saber en que se estaba trabajando la ultima vez que se modificaron los cambios
 
-```git
+```shell
 git diff
 ```
 
 Con el anterior comando es imposible conocer los cambios entre HEAD y lo que hay en el stage, por ello hay una bandera especial que se encarga de eso.
 
-```git
+```shell
 git diff --staged
 ```
 
@@ -223,31 +223,31 @@ git diff --staged
 
 Para poder modificar el nombre del ultimo commit generado es necesario utilizar
 
-```git
+```java
 git commit --amend
 ```
 
 Para poder eliminar un archivo del stage es necesario ocupar un comando especial
 
-```git
+```shell
 git reset HEAD <nombre del archivo>
 ```
 
 Para poder traer de vuelta al stage todos los cambios de la ultima captura es necesario ocupar un reset con una bandera especial del commit que se quiera actualizar, en este caso cuando se ocupa el HEAD^ para traer el ultimo commit que esta antes del HEAD, y con ello se puede hacer de nuevo el commit con un nuevo nombre
 
-```git
+```shell
 git reset --soft HEAD^
 ```
 
 Para poder dejar un archivo como estaba en el ultimo commit es necesario ejecutar un comando que pudiera ser muy delicado si hay cambios importantes que no se encuentren en el stage.
 
-```git
+```shell
 git checkout -- <nombre del archivo>
 ```
 
 El siguiente comando sirve para revertir los cambios y regresar los archivos al ultimo commit de todos los cambios que se realizaron y que no se encuentren en el stage.
 
-```git
+```shell
 git checkout -- .
 ```
 
@@ -256,39 +256,39 @@ git checkout -- .
 <!--Redactar esto-->
 Cuando se esta viajando en el tiempo es posible estar sin eliminar los cambios que se hicieron a traves de la bandera soft
 
-```git
+```shell
 git reset --soft <hash del commit>
 ```
 
 Para poder ir a un punto de la historia y los commits adelante de donde se viajara se pondran afuera del escenario y aun contendra las modificaciones
 
-```git
+```shell
 git reset --mixed <hash del commit>
 ```
 
 Para eliminar los commits delante del que esta es necesario utilizar el siguiente comando
 
-```git
+```shell
 git reset --hard <hash del commit>
 ```
 
 Para identificar todos los movimientos que se hicieron apesar de que hayan sido eliminador por un reset hard es posible recuperarlo obteniendo su hash en la tabla de todos los cambios que se hicieron
 
-```git
+```shell
 git reflog
 git reset --hard <hash del commit>
 ```
 
-<!--https://platzi.com/discusiones/1170-git-github/321-53433eef-e76d-4620-9bad-103597d1d943/
-https://stackoverflow.com/questions/3528245/whats-the-difference-between-git-reset-mixed-soft-and-hard-->
+<!-- https://platzi.com/discusiones/1170-git-github/321-53433eef-e76d-4620-9bad-103597d1d943/
+https://stackoverflow.com/questions/3528245/whats-the-difference-between-git-reset-mixed-soft-and-hard -->
 
 ### Cambiar y eliminar archivos con git
 
-```git
+```shell
 git mv <nombre actual> <nombre nuevo>
 ```
 
-```git
+```shell
 git rm <nombre>
 ```
 
@@ -296,23 +296,110 @@ git rm <nombre>
 
 Sirve para mostrar el historial de los commits hechos localmente.
 
-```git
+```shell
 git log
 ```
 
 Para tener una mejor presentación de los datos en donde se despliega en una sola linea con el hash, el nombre del commit y en donde se encuentra el _Head_ es necesario agregarle una bandera al comando.
 
-```git
+```shell
 git log --oneline
 ```
 
 Para poder visualizar todos los cambios que se fueron generando de una manera gráfica es necesario agregarle dos banderas al comando para que se pueda mover entre branches y merges.
 
-```git
+```shell
 git log --graph --decorate
 ```
 
 Cabe destacar que las banderas del log antes mencionados se pueden combinar para checar de una mejor manera lo que esta pasando al proyecto, es desición de cada uno elegir cual es la más funcional para cada uno.
+
+### Manejo de branchs
+
+Para checar todas las ramas existentes y en cual se está
+
+```shell
+git brach
+```
+
+Para moverse entre ramas
+
+```shell
+git checkout <nombre-rama>
+```
+
+Para poder crear nuevas ramas es necesario ocupar el comando
+
+```shell
+git brach <nombre-branch>
+```
+
+Para poder crear nuevas ramas y al mismo tiempo moverse en ellas es necesario ocupar el comando
+
+```shell
+git checkout -b <nombre-branch>
+```
+
+Para checar diferencias entre las ramas
+
+```shell
+git dif <nombre-branch-uno> <nombre-branch-dos>
+```
+
+Para eliminar una rama
+
+```shell
+git branch -d <nombre de la rama>
+```
+
+Para poder hacer cualquier merge es necesario estar en la rama en la cual se quieran agregar todos los cambios.
+
+#### Merge: Fast-fordward
+
+Para unir las ramas
+
+```shell
+git merge <rama a unir>
+```
+
+#### Merge: Automatico
+
+```shell
+git merge <rama a unir>
+```
+
+#### Merge: Con conflictos
+
+Primero se debe de hacer el merge y despues el commit de la resolución del conflicto
+
+### Tags
+<!--Investigar que es un tag-->
+
+Para ver todos los tags
+
+```shell
+git tag 
+```
+
+Para crear un tag es necesario
+
+```shell
+git tag <nombre del tag>
+git tag -a <version> -m <mensaje>
+git tag -a <version> <hash del commit al que se quiera poner tag> -m <mensaje>
+```
+
+Para borrar un tag es necesario
+
+```shell
+git tag -d <nombre del tag>
+```
+
+Para ver todos los cambios hechos en ese punto de la historia con el tag
+
+```shell
+git show <nombre del tag>
+```
 
 <!-- Referencias de imagenes -->
 [gitcommit]: img/gitadd-gitcommit.png
@@ -329,6 +416,32 @@ Cabe destacar que las banderas del log antes mencionados se pueden combinar para
 <!--Sin editar del curso-->
 
 ## Anexos
+
+### Pedir ayuda
+
+Es muy fácil perdernos entre tanto que aprender y por ello git nos puede proporcionar una guía bastante útil cuando la necesitemos respecto a los comandos que existen, por ello es importante conocer las diferentes maneras de pedir ayuda.
+
+```shell
+git help
+git help <comando>
+git <comando> --help
+```
+
+### Manipular el archivo de configuración
+
+Muchas de las veces es necesario consultar nuestras configuraciones globales para identificar que variables esta tomando nuestro control de versiones.
+
+```shell
+git config --global -l
+```
+
+De igual manera, aveces, se tendrá la necesidad de modificar las configuraciones de una manera sencilla y rápida.
+
+```shell
+git config --global -e
+```
+
+
 
 ## ***Conceptos de Git***
 
@@ -377,3 +490,4 @@ Cuando se manejan distintas ramas se crea un nuevo apuntador para que se pueda m
 - Para salir sin guardar cambios en los archivos es con ```:q```
 - Para editar el archivo con ``a``
 - Para salir y guardar cambios en los archivos es con ```:wq```
+

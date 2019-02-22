@@ -20,11 +20,11 @@ Este es mi repositorio en donde llevare todo mi avance del 2019
 
 ## Markdown
 
-   1. [ ] a
+   1. [x] a
 
 ## Android development
 
-   1. [ ] a
+      1. [ ] a
 
 ## Kotlin
 
