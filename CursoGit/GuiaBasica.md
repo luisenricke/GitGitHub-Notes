@@ -67,6 +67,28 @@ Si no se configura esto, puede arrojar la siguiente advertencia ``warning: LF wi
 
 #### Conexión con SSH
 
+- Generar llave
+- Testear
+- Configurar llave Github
+
+<!-- https://help.github.com/en/articles/connecting-to-github-with-ssh -->
+
+#### Autentificación de doble factor
+
+#### Manipular archivo de configuración
+
+Muchas de las veces es necesario consultar nuestras configuraciones globales para identificar que variables esta tomando nuestro control de versiones.
+
+```shell
+git config --global -l
+```
+
+De igual manera, aveces, se tendrá la necesidad de modificar las configuraciones de una manera sencilla y rápida.
+
+```shell
+git config --global -e
+```
+
 ## Fundamentos 
 
 ### Generando un repositorio
@@ -259,7 +281,7 @@ Otra cosa que se puede hacer es mantener ciertos archivos en tu directorio de tr
 git rm --cached README
 ```
 
-### Checar el historial de las capturas
+### Checar el historial de los commits ~ log
 
 Sirve para mostrar el historial de los commits hechos localmente.
 
@@ -304,7 +326,7 @@ git log --graph --decorate
 
 Cabe destacar que las banderas del log antes mencionados se pueden combinar para checar de una mejor manera lo que esta pasando al proyecto, es decisión de cada uno elegir cual es la más funcional para cada uno.
 
-### Deshacer cosas importantes
+### Deshacer cosas importantes ~ reset
 
 Para poder modificar el nombre del ultimo commit generado es necesario utilizar el siguiente comando.
 
@@ -336,13 +358,59 @@ El siguiente comando sirve para revertir los cambios y regresar los archivos al 
 git checkout -- .
 ```
 
+<!--Redactar esto-->
+Cuando se esta viajando en el tiempo es posible estar sin eliminar los cambios que se hicieron a traves de la bandera soft
+
+```shell
+git reset --soft <hash del commit>
+```
+
+Para poder ir a un punto de la historia y los commits adelante de donde se viajara se pondran afuera del escenario y aun contendra las modificaciones
+
+```shell
+git reset --mixed <hash del commit>
+```
+
+Para eliminar los commits delante del que esta es necesario utilizar el siguiente comando
+
+```shell
+git reset --hard <hash del commit>
+```
+
+Para identificar todos los movimientos que se hicieron apesar de que hayan sido eliminador por un reset hard es posible recuperarlo obteniendo su hash en la tabla de todos los cambios que se hicieron
+
+```shell
+git reflog
+git reset --hard <hash del commit>
+```
+
+<!-- https://platzi.com/discusiones/1170-git-github/321-53433eef-e76d-4620-9bad-103597d1d943/
+https://stackoverflow.com/questions/3528245/whats-the-difference-between-git-reset-mixed-soft-and-hard -->
+
 ### Proyectos remotos
+
+Los repositorios remotos son versiones de tu proyecto que se encuentran alojados en Internet o en algún punto de la red. Puedes tener varios, cada uno de los cuales puede ser de sólo lectura, o de lectura/escritura, según los permisos que tengas. Colaborar con otros implica gestionar estos repositorios remotos, y mandar (push) y recibir (pull) datos de ellos cuando necesites compartir cosas.
+
+Esta configuracion es para identificarte como usuario de github en git
+
+```shell
+git push -u origin master
+```
 
 #### Ver 
 
 #### Añadir ~ add
 
+```shell
+git remote add <nombre-repositorio> <url-repositorio>
+git remote add upstream <url> #Por convención es upstream
+```
+
+
+
 #### Comparar ~ fetch
+
+#### Recibir~ pull
 
 #### Enviar ~ push
 
@@ -352,9 +420,19 @@ git checkout -- .
 
 #### Eliminar ~ rm
 
+```
+git branch -D <nombre-rama> # Localmente
+git push origin:<nombre-rama> # Desde local a github
+git remote prune origin # Eliminar todas las que ya no se encuentran en github
+```
+
+
+
 ### Etiquetas ~ tag
 
 Git tiene la habilidad de etiquetar puntos específicos en la historia como importantes. Generalmente la gente usa esta funcionalidad para marcar puntos donde se ha lanzado alguna versión (v1.0, y así sucesivamente).
+
+<!-- Para revisar como versionar https://semver.org/ -->
 
 Para ver todos los tags
 
@@ -394,54 +472,21 @@ Si se quiere enviar varias etiquetas a la vez, se puede usar una bandera especia
 git push origin --tags
 ```
 
+<!-- Tambien hay release https://help.github.com/en/articles/about-releases -->
+
+### Pedir ayuda ~ help
+
+Es muy fácil perdernos entre tanto que aprender y por ello git nos puede proporcionar una guía bastante útil cuando la necesitemos respecto a los comandos que existen, por ello es importante conocer las diferentes maneras de pedir ayuda.
+
+```shell
+git help
+git help <comando>
+git <comando> --help
+```
+
 ## Ramificaciones
 
 ### Acerca de ramas
-
-### Procedimientos básicos para ramificar y fusionar
-
-### Gestionar ramas
-
-### Flujos de trabajos
-
-### Ramas remotas
-
-### Reorganizar el trabajo
-
-## Operaciones básicas con los comandos de Git
-
-### Viajar en el tiempo 
-
-<!--Redactar esto-->
-Cuando se esta viajando en el tiempo es posible estar sin eliminar los cambios que se hicieron a traves de la bandera soft
-
-```shell
-git reset --soft <hash del commit>
-```
-
-Para poder ir a un punto de la historia y los commits adelante de donde se viajara se pondran afuera del escenario y aun contendra las modificaciones
-
-```shell
-git reset --mixed <hash del commit>
-```
-
-Para eliminar los commits delante del que esta es necesario utilizar el siguiente comando
-
-```shell
-git reset --hard <hash del commit>
-```
-
-Para identificar todos los movimientos que se hicieron apesar de que hayan sido eliminador por un reset hard es posible recuperarlo obteniendo su hash en la tabla de todos los cambios que se hicieron
-
-```shell
-git reflog
-git reset --hard <hash del commit>
-```
-
-<!-- https://platzi.com/discusiones/1170-git-github/321-53433eef-e76d-4620-9bad-103597d1d943/
-https://stackoverflow.com/questions/3528245/whats-the-difference-between-git-reset-mixed-soft-and-hard -->
-
-### Manejo de branchs
 
 Una rama de git es simplemente un apuntador ubicado en uno de los diferentes commits. La rama por defecto es la master. En cada commit que realicemos, la rama irá avanzando automaticamente. Por default, la rama que se utiliza es la master.
 
@@ -491,6 +536,10 @@ El proceso de fusionado se conoce como merge y puede llegar a ser muy simple o m
 
 Para poder hacer cualquier merge es necesario estar en la rama en la cual se quieran agregar todos los cambios de la otra rama.
 
+### Procedimientos básicos para ramificar y fusionar
+
+### Gestionar ramas
+
 #### Fast-fordward
 
 Git simplemente mueve el puntero hacia adelante para fusionar los cambios de la rama secundaria a la principal. Para expresarlo de otra manera, cuando intenta un merge  con un commit con otro al que se puede llegar siguiendo el historial del primer commit, Git simplifica las cosas moviendo el puntero hacia adelante porque no hay archivos que se hayan modificado en las dos ramas al mismo tiempo.
@@ -520,6 +569,201 @@ git merge <rama-a-unir>
 git commit -am ["Mensaje de resolución de conflicto"]
 ```
 
+
+
+### Flujos de trabajos
+
+### Ramas remotas
+
+### Reorganizar el trabajo
+
+## Stash
+
+Normalmente  el espacio de trabajo suele estar en un estado inconsistente. Pero puede  que se necesite cambiar de rama durante un breve tiempo para ponerse a  trabajar en algún otro tema urgente. Esto plantea el problema de  confirmar cambios en un trabajo medio hecho, simplemente para poder  volver a ese punto más tarde. 
+
+Este comando de guardado rápido (stashing) toma el estado del espacio  de trabajo, con todas las modificaciones en los archivos bajo control  de cambios, y lo guarda en una pila provisional. Desde allí, se podrán  recuperar posteriormente y volverlas a aplicar de nuevo sobre el espacio  de trabajo.
+
+Para almacenar los cambios de todo el directorio es necesario utilizar el siguiente comando.
+
+```shell
+git stash
+```
+
+Para listar todos la lista de los stash
+
+```shell
+git stash list
+```
+
+Para regresar el ultimo stash es necesario utilizar el comando, cabe destacar que si se utiliza pop se eliminara el stash de la lista y si se utiliza apply ahí seguirá.
+
+```shell
+git stash [pop|apply]
+```
+
+O para restaurar un  stash en especifico
+
+```shell
+git stash apply stash@{<numero-stage>}
+```
+
+Para eliminar un stage en especifico es necesario el siguiente comando
+
+```shell
+git stash drop stash@{<numero-stash>}
+```
+
+O para eliminar la primera encontrada
+
+```shell
+git stash drop
+```
+
+O para eliminar todas las entradas
+
+```shell
+git stash clear
+```
+
+Cuando se encuentre conflictos a la hora de hacer el merge del stash con el index de tu repositorio es necesario corregir manualmente el error y hacer un commit para seguir adelante, pero sin antes olvidar checar si se elimino el stash que se uso.
+
+```shell
+git stash [pop|apply]
+git commit -am ["Mensaje de resolucion de conflicto"]
+git stage drop
+```
+
+Hay algunas banderas que son importantes para stage que son las que guardan todo menos lo que esta en el stage y los que incluyen guardar los cambios incluso en los archivos que no tienen un seguimiento
+
+```shell
+git stash push --keep-index
+git stash push --include-untracked
+```
+
+Para mostrar todas las modificaciones de los stage se pueden hacer de dos maneras diferentes
+
+```shell
+git stash list --stat
+git show stash
+git show stash@{<numero-stash>}
+```
+
+Para agregar mensajes a los stash 
+
+```
+git stash push -m ["Mensaje"]
+```
+
+<!-- https://git-scm.com/book/es/v1/Las-herramientas-de-Git-Guardado-r%C3%A1pido-provisional -->
+
+## Rebase
+
+Es el proceso de mover o combinar una secuencia de commits a una nueva base de commits. La modificación de rebase es más útil y se visualiza fácilmente en el contexto de un flujo de trabajo de ramificación de características.
+
+- Ordenar commits
+- Corregir mensajes de commits
+- Unir commits
+- Separar commits
+
+### Update branch
+
+Sirve para mover los commits y a un tiempo para que no tenga conflictos a la hora de hacer merge entre las ramas
+
+Primero nos vamos a la rama que queremos mover, hacemos el rebase, nos regresamos a la rama original y hacemos el merge sin ningún problema
+
+```shell
+git checkout <nombre-rama-a-ir>
+git rebase <nombre-rama-a-mover>
+git checkout <nombre-roriginal>
+git merge <rama-a-combinar>
+```
+
+
+
+### Squash
+
+Sirve para unir todos los commits en uno solo y poder renombrar en un solo commit, es necesario utilizar un rebase interactivo
+
+```shell
+git rebase -i <patron-de-commits>
+git rebase -i HEAD~4 #Ejemplo
+```
+
+Y es necesario utilizar la letra s o squash en los commits  que se quieren unir en el editor de vim.
+
+### Reword
+
+Sirve para modificar el nombre del commit, es necesario utilizar un rebase interactivo.
+
+```shell
+git rebase -i <patron-de-commits>
+git rebase -i HEAD~1 #Ejemplo
+```
+
+Y es necesario utilizar la letra r o reword en los commits  que se quieren modificar en el editor de vim.
+
+Y por si las dudas, se ejecuta el siguiente comando para que no cree otra rama
+
+```shell
+git checkout <rama>
+git checkout master #Ejemplo
+```
+
+### Edit
+
+Sirve para modificar los archivos del commit, es necesario utilizar un rebase interactivo.
+
+```shell
+git rebase -i <patron-de-commits>
+git rebase -i HEAD^ #Ejemplo
+```
+
+Y es necesario utilizar la letra e o edit en los commits  que se quieren modificar en el editor de vim.
+
+Para modificar los archivos es necesario dejarlos como estaban antes de hacer el commit
+
+```shell
+git reset HEAD^
+```
+
+Con esto listo ya se pueden hacer las modificaciones que se quisieran y en los commits adecuados, cabe destacar que como estamos en medio del rebase no aparecerá en ninguna branch.
+
+Y por últimos, ya después de todos los cambios hechos, para volver a la normalidad y terminar el rebase es necesario el siguiente comando
+
+```shell
+git rebase --continue
+```
+
+<!-- https://www.atlassian.com/git/tutorials/merging-vs-rebasing -->
+
+## Trabajo en GitHub
+
+### Fork
+
+### Clone 
+
+### Colaboración
+
+### Pull Request
+
+### Issues
+
+<!-- https://guides.github.com/features/issues/ -->
+
+### Milestones
+
+### Wiki
+
+### Proyectos
+
+### Organización
+
+### Gráficas
+
+
+
+
+
 <!-- Referencias de imagenes -->
 
 [gitcommit]: img/gitadd-gitcommit.png
@@ -535,30 +779,6 @@ git commit -am ["Mensaje de resolución de conflicto"]
 
 ## Anexos
 
-### Pedir ayuda
-
-Es muy fácil perdernos entre tanto que aprender y por ello git nos puede proporcionar una guía bastante útil cuando la necesitemos respecto a los comandos que existen, por ello es importante conocer las diferentes maneras de pedir ayuda.
-
-```shell
-git help
-git help <comando>
-git <comando> --help
-```
-
-### Manipular el archivo de configuración
-
-Muchas de las veces es necesario consultar nuestras configuraciones globales para identificar que variables esta tomando nuestro control de versiones.
-
-```shell
-git config --global -l
-```
-
-De igual manera, aveces, se tendrá la necesidad de modificar las configuraciones de una manera sencilla y rápida.
-
-```shell
-git config --global -e
-```
-
 ### Manejo de linea de comandos de git
 
 - Limpiar la consola ```clear```
@@ -570,6 +790,4 @@ git config --global -e
 - Para salir sin guardar cambios en los archivos es con ```:q```
 - Para editar el archivo con ``a``
 - Para salir y guardar cambios en los archivos es con ```:wq```
-
-<!-- Sin editar -->
 
