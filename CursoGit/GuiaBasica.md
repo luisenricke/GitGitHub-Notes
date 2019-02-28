@@ -4,9 +4,9 @@
 
 ### Acerca del control de versiones
 
-Al momento de desarrollar es importante poder llevar un registro historico de todos los cambios generados por todos los involucrados en el proyecto, en eso radica la popularidad de los controladores de versiones de hoy en día. Nos permiten administrar cualquier desarrollo de software de una manera eficaz y rápida.
+Al momento de desarrollar es importante poder llevar un registro histórico de todos los cambios generados por todos los involucrados en el proyecto, en eso radica la popularidad de los controladores de versiones de hoy en día. Nos permiten administrar cualquier desarrollo de software de una manera eficaz y rápida.
 
-El correcto uso de esta tecnología puede ser un valioso aliado, ya que nos ahorra el hecho que tengamos que hacer nosotros mismos respaldos de archivos que a lo mejor nos olvidemos donde estén o modifiquemos en algun lugar que no sea el correcto, así como nos ofrece movernos libremente entre el historico de todos los archivos. También funciona perfecto para equipos de gran tamaña como también para quien trabaja en solitario por su flexibilidad en el flujo de trabajo.
+El correcto uso de esta tecnología puede ser un valioso aliado, ya que nos ahorra el hecho que tengamos que hacer nosotros mismos respaldos de archivos que a lo mejor nos olvidemos donde estén o modifiquemos en algún lugar que no sea el correcto, así como nos ofrece movernos libremente entre el histórico de todos los archivos. También funciona perfecto para equipos de gran tamaña como también para quien trabaja en solitario por su flexibilidad en el flujo de trabajo.
 
 ### Git, una breve explicación
 
@@ -15,9 +15,9 @@ El correcto uso de esta tecnología puede ser un valioso aliado, ya que nos ahor
 
 Git es un sistema de control de versiones distribuido, es decir, que existe el código fuente en el servidor y en los equipos donde se guarda el proyecto, siendo completamente independiente del servicio de alojamiento principal.
 
-La gran ventaja que nos brinda es la seguridad de que si algun día llegará a corromperse algunos archivos en el servidor o alguien borrará el proyecto principal por accidente, cualquiera que tuviera una copia del programa antes de que pasará una de las situaciones anteriormente planteadas pudiesé ser el salvador del equipo pudiendo resubir el repositorio y seguiría el curso del desarrollo como si no hubiera pasado nada.  
+La gran ventaja que nos brinda es la seguridad de que si algún día llegará a corromperse algunos archivos en el servidor o alguien borrará el proyecto principal por accidente, cualquiera que tuviera una copia del programa antes de que pasará una de las situaciones anteriormente planteadas pudiese ser el salvador del equipo pudiendo re-subir el repositorio y seguiría el curso del desarrollo como si no hubiera pasado nada.  
 
-<!--![Control de versiones distribuido][git-distribuido]-->
+![Control de versiones distribuido][git-distribuido]
 
 ### Configuración
 
@@ -51,16 +51,9 @@ git config --global alias.s "status -s -b"
 
 Cuando se trabaja en equipo o en solitario pero en dos sistemas operativos distintos es común que se presente el error del como esta formateado los archivos, ya que Windows, Linux y OSX manejan de distinta manera los caracteres de una nueva linea.
 
-Configuración para Windows:
-
 ```shell
-git config --global core.autocrlf true
-```
-
-Configuración para OSX y Linux:
-
-```shell
-git config --global core.autocrlf input
+git config --global core.autocrlf true # Windows
+git config --global core.autocrlf input # Linux & OSX
 ```
 
 Si no se configura esto, puede arrojar la siguiente advertencia ``warning: LF will be replaced by CRLF in [FILE_NAME]. The file will have its original line endings in your working directory``, en donde se dispara cuando se están haciendo los commits.
@@ -149,34 +142,34 @@ git status -s -b
 
 Staging area o Index es una especie de área de almacenamiento en donde se colocan los contenidos que se deben confirmar en el commit.
 
-Hay varias maneras con las cuales se puede filtrar que archivos o carpetas se desea agregar al stage, esto ocacionara que en la busqueda de errores a través del tiempo sea más rápida y visible.
+Hay varias maneras con las cuales se puede filtrar que archivos o carpetas se desea agregar al stage, esto ocasionará que en la búsqueda de errores a través del tiempo sea más rápida y visible.
 
 Para agregar un único archivo:
 
 ```shell
 git add <nombre-del-archivo>
-git add ejemplo.html
+git add ejemplo.html # Ejemplo
 ```
 
 Para agregar muchos archivos a la vez:
 
 ```shell
 git add <archivo-1>...<archivo-n>
-git add ejemplo.html css/style.css js/app.js
+git add ejemplo.html css/style.css js/app.js # Ejemplo
 ```
 
 Para agregar una carpeta en especifico con todo su contenido:
 
 ```shell
 git add <nombre-carpeta>/
-git add js/
+git add js/ # Ejemplo
 ```
 
 Para agregar todos los archivos con un tipo de extensión en la direccion actual:
 
 ```shell
 git add *.<nombre-tipo-archivo>
-git add *.jpg
+git add *.jpg # Ejemplo
 ```
 
 Para agregar todos los archivos con un tipo de extensión en todo el proyecto:
@@ -190,7 +183,7 @@ Para agregar todos los archivos con un tipo de extensión en la carpeta especifi
 
 ```shell
 git add <nombre de carpeta>/*.<nombre del tipo de archivo>
-git add img/*.jpg
+git add img/*.jpg # Ejemplo
 ```
 
 Para agregar todos excluyendo ciertos archivos o carpetas con filtro:
@@ -198,7 +191,7 @@ Para agregar todos excluyendo ciertos archivos o carpetas con filtro:
 ```shell
 git add .
 git reset <filtro>
-git reset  js/ css/ favicon.ico
+git reset  js/ css/ favicon.ico # Ejemplo
 ```
 
 #### Ignorar archivos ~ gitignore
