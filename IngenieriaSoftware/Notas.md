@@ -42,9 +42,16 @@ En el modelado de BPMN, se pueden percibir distintos niveles de mode-lado de pro
 ## ***Referencias***
 
 
+
 <!-- Referencias de imagenes -->
 
 <!-- Referencias de libros-->
 
 [ian]: I. Sommerville, Ingeniería del software, 7th ed. Madrid: Pearson Educación, 2005.
+
+<!-- Referencias de webs -->
+
+- [Software Guru - Patrones de casos de uso](https://sg.com.mx/revista/6/patrones-casos-uso)
+- [Patrones de casos de uso](http://blog.micayael.com/category/patrones-de-casos-de-uso/)
+- 
 
