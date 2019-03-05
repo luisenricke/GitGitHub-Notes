@@ -26,10 +26,9 @@ Este es mi repositorio en donde llevare todo mi avance del 2019
    ---
 
    - Buenas practicas de Android
-
    - Librerías de Android
-
    - Test unitarios
+   - Inyección de dependencias
 
    ---
 
