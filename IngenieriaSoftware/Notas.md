@@ -53,5 +53,6 @@ En el modelado de BPMN, se pueden percibir distintos niveles de mode-lado de pro
 
 - [Software Guru - Patrones de casos de uso](https://sg.com.mx/revista/6/patrones-casos-uso)
 - [Patrones de casos de uso](http://blog.micayael.com/category/patrones-de-casos-de-uso/)
-- 
+- [Gunnar Overgaard and Karin Palmkvist ~ Use Cases: Patterns and Blueprint - O'REILLY](https://learning.oreilly.com/library/view/patterns-for-effective/0201721848/)
+- [Steve Adolph and Paul Bramble ~ Patterns for Effective Use Cases - O'REILLEY](https://learning.oreilly.com/library/view/use-cases-patterns/0131451340/)
 
