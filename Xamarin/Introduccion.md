@@ -49,4 +49,5 @@ En donde el metodo init sirve para llamar a la vista de xamarin forms.
 ## Referencias
 
 - [NetVersionStandar Support](http://immo.landwerth.net/netstandard-versions/#)
+- 
 
