@@ -30,6 +30,9 @@ Must be one of the following:
 * **test**: Adding missing tests
 * **chore**: Changes to the build process or auxiliary tools and libraries such as documentation
   generation
+* complete
+* incomplete
+* 
 
 #### Scope
 
@@ -43,3 +46,7 @@ The subject contains succinct description of the change:
 * use the imperative, present tense: "change" not "changed" nor "changes"
 * don't capitalize first letter
 * no dot (.) at the end
+
+## Referencias
+
+- [DEV Community 👨‍💻👩‍💻 | Enhance your git log with conventional commits](https://dev.to/maxpou/enhance-your-git-log-with-conventional-commits-3ea4)
