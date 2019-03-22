@@ -63,5 +63,5 @@ Este es mi repositorio en donde llevare todo mi avance del 2019
 * [Medium - A Roadmap To Become A Better Android Developer](https://medium.com/mindorks/a-roadmap-to-become-a-better-android-developer-3038cf7f8c8d)
 * [GitHub - XamarinUniverse](https://github.com/xamarinuniverse/XamarinUniversalLibrary)
 * [GitHub - MobileXamarin](https://github.com/it-shark-pro/mobile-xamarin)
-* 
+* [Aspectos legales del codigo abierto](https://opensource.guide/es/legal/)
 
