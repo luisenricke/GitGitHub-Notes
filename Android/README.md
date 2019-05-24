@@ -25,7 +25,7 @@ CTRL + P //Mostrar parametros
 
 - [Android Development Best Practices](https://blog.mindorks.com/android-development-best-practices-83c94b027fd3)
 - [Android MVVM Architecture Components using The Movie Database API](https://medium.com/@skydoves/android-mvvm-architecture-components-using-the-movie-database-api-8fbab128d7)
-
+- [Top 10 Most Common Mistakes That Android Developers Make: A Programming Tutorial](https://www.toptal.com/android/top-10-most-common-android-development-mistakes)
 ---
 
 -[How can I auto implement suggestions in Android Studio?](https://stackoverflow.com/questions/25403707/how-can-i-auto-implement-suggestions-in-android-studio)
